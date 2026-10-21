@@ -1,3 +1,4 @@
+from fastapi.middleware.cors import CORSMiddleware
 import json
 from pathlib import Path
 
@@ -15,6 +16,13 @@ app = FastAPI(
     title="Telugu-English Emotion Detection API",
     description="Predict emotions in Telugu-English code-mixed text.",
     version="1.0.0",
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 DATA_PATH = Path(__file__).parent / "model_data.json"
